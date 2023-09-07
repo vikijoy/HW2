@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>{% block title %} Shop {% endblock %}</title>
+</head>
+<body>
+<header>
+    {% block header %}
+    <p style="font-style:oblique">
+        <font size="7" color="#917a79" face="Times New Roman">Офлайн магазин</font>
+    </p>
+    {% endblock %}
+</header>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    {% block nav %}
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"> -> </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('clothes') }}">Одежда</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('games') }}">Игры</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Главная</a>
+                </li>
+                {% if not 'username' in session %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}"> Войти </a>
+                </li>
+                {% endif %}
+                {% if 'username' in session %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}"> Выйти </a>
+                </li>
+                {% endif %}
+
+
+            </ul>
+        </div>
+    </div>
+
+    {% endblock %}
+</nav>
+
+<main>
+    {% block main %}
+    <br>
+    {% for i in content %}
+    <font size="4" color="#3e7872" face="Times New Roman">
+        <div>
+            Название: {{ i.name }} <br>
+            Цена: {{ i.price }} <br>
+            Описание: {{ i.description }}<br>
+            <br>
+        </div>
+    </font>
+    {% endfor %}
+    {% endblock %}
+</main>
+
+<footer>
+    {% block footer %}
+    <font size="2.5" color="#917a79" face="Times New Roman">
+        <p>
+            <br><br>Обращаем ваше внимание, что данный интернет-сайт,
+            <br>а также вся информация о товарах и ценах,
+            <br>представленная на нем, носят исключительно информационный
+            <br> характер и не являются публичной офертой,
+            <br>определяемой положениями: Статьи 437 Гражданского кодекса РФ.
+        </p>
+    </font>
+    {% endblock %}
+</footer>
+</body>
+</html>

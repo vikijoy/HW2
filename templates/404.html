@@ -1,0 +1,23 @@
+{%  extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block header %}
+{{ super() }}
+{% endblock %}
+
+{% block nav %}
+{{ super() }}
+{% endblock %}
+
+
+{% block main %}
+<div>
+    <h2>Страница не найдена... </h2>
+    <h3>Вы пытались получить доступ к странице по адресу: {{ url }}</h3>
+</div>
+{% endblock %}
+
+{% block footer %}
+{{ super() }}
+{% endblock %}
